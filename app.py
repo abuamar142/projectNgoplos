@@ -4,8 +4,6 @@ import hashlib
 
 app = Flask(__name__)
 app.secret_key = 'mauygqw56287w6w7' 
-
-
         
 @app.route('/welcome_register')
 def welcome_register():
@@ -17,7 +15,7 @@ def login_failed():
 
 @app.route('/')
 def index():
-    return render_template('Home.html')
+    return render_template('home.html')
 
 
 
@@ -45,7 +43,7 @@ def register():
 
 @app.route('/cafe_login')
 def cafe_login():
-    return render_template('Cafe.html')
+    return render_template('cafe.html')
 
 @app.route('/loginn', methods=['GET', 'POST'])
 def loginn():
@@ -72,8 +70,8 @@ def login():
 
 
 @app.route('/cafe_noLogin')
-def cafe_noLogin():
-    return render_template('Cafe copy.html')
+def cafe_no_login():
+    return render_template('cafe_copy.html')
 
 @app.route('/rekomendasi')
 def contact():

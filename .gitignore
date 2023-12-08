@@ -29,8 +29,3 @@ instance/
 
 # Flask environment file
 .env
-
-# CSS and HTML files
-*.css
-*.html
->>>>>>> 76defa4 (initialize project ngopi los)

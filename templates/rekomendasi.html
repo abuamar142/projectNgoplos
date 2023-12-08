@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- feather icon -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <title>Ngoplos</title>
+  </head>
+  <body>
+    <!-- Navbar start -->
+    <nav class="navbar">
+      <img
+        src="{{ url_for('static', filename='img/Logo.png') }}"
+        alt="Logo"
+        class="navbar-logo"
+      />
+
+      <div class="navbar-nav">
+        <a href="/">Tentang</a>
+        <a href="/cafe">Cafe</a>
+        <a href="/rekomendasi">Rekomendasikan</a>
+      </div>
+
+      <div class="navbar-extra">
+        <a href="#" id="search-button"
+          ><img src="{{ url_for('static', filename='img/search.svg') }}"
+        /></a>
+        <a href="#" id="save"
+          ><img src="{{ url_for('static', filename='img/save.svg') }}"
+        /></a>
+        <a href="#" id="hamburger-menu"
+          ><img src="{{ url_for('static', filename='img/align-justify.svg') }}"
+        /></a>
+      </div>
+
+      <!-- search form start -->
+      <div class="search-form">
+        <input type="search" id="search-box" placeholder="Cari Lokasi ...." />
+        <label for="search-box"
+          ><img src="{{ url_for('static', filename='img/search.svg') }}" />
+        </label>
+      </div>
+      <!-- search form end -->
+    </nav>
+    <!-- Navbar end -->
+
+    <!-- Rekomendasi section  start-->
+    <section id="rekomendasi" class="rekomendasi">
+      <h2>Rekomendasikan Tempat<span> Ngopi </span>Favorit mu</h2>
+      <p>
+        "Hey, ada tempat ngopi yang luar biasa yang ingin anda rekomendasikan?
+        segera rekomendasikan tempat yang benar-benar menghipnotis dengan
+        kehangatan suasana dan cita rasa kopi yang tak terlupakan"
+      </p>
+
+      <div class="row">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63245.98371951933!2d110.33364482759286!3d-7.803163418637697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5787bd5b6bc5%3A0x21723fd4d3684f71!2sYogyakarta%2C%20Kota%20Yogyakarta%2C%20Daerah%20Istimewa%20Yogyakarta!5e0!3m2!1sid!2sid!4v1701795666565!5m2!1sid!2sid"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="maps"
+        ></iframe>
+        <form action="">
+          <div class="input-group">
+            <img
+              src="{{ url_for('static', filename='img/coffee.svg') }}"
+              class="images"
+            />
+            <input type="text" placeholder="Nama Cafe" />
+          </div>
+
+          <div class="input-group">
+            <img
+              src="{{ url_for('static', filename='img/map.svg') }}"
+              class="images"
+            />
+            <input type="text" placeholder="Lokasi Cafe" />
+          </div>
+
+          <div class="input-group">
+            <img
+              src="{{ url_for('static', filename='img/map-pin.svg') }}"
+              class="images"
+            />
+            <input type="text" placeholder=" input url lokasi" />
+          </div>
+
+          <button type="submit" class="btn">kirim rekomendasi</button>
+        </form>
+      </div>
+    </section>
+    <!-- Rekomendasi section  end-->
+
+    <!-- my script -->
+    <!-- my script -->
+    <script src="{{ url_for('static', filename='js/cafe.js') }}"></script>
+  </body>
+</html>

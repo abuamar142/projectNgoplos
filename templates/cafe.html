@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- feather icon -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <title>Ngoplos</title>
+  </head>
+  <body>
+    <!-- Navbar start -->
+    <nav class="navbar">
+      <img
+        src="{{ url_for('static', filename='img/Logo.png') }}"
+        alt="Logo"
+        class="navbar-logo"
+      />
+      <div class="navbar-nav">
+        <a href="/">Home</a>
+        <a href="/cafe">Cafe</a>
+        <a href="/rekomendasi">Rekomendasikan</a>
+        <button class="logout-btn" id="logout"><a href="/logout">logout</a></button>
+      </div>
+
+      <div class="navbar-extra">
+        <a href="#" id="search-button"
+          ><img src="{{ url_for('static', filename='img/search.svg') }}"
+        /></a>
+        <a href="#" id="save"
+          ><img src="{{ url_for('static', filename='img/save.svg') }}"
+        /></a>
+        <a href="#" id="hamburger-menu"
+          ><img src="{{ url_for('static', filename='img/align-justify.svg') }}"
+        /></a>
+      </div>
+
+      <!-- search form start -->
+      <div class="search-form">
+        <input type="search" id="search-box" placeholder="Cari Lokasi ...." />
+        <label for="search-box"
+          ><img src="{{ url_for('static', filename='img/search.svg') }}" />
+        </label>
+      </div>
+      <!-- search form end -->
+    </nav>
+    <!-- Navbar end -->
+
+    <!-- section cafe -->
+    <section class="cafe" id="cafe">
+      <h2>Ca<span>fe</span></h2>
+      <p>
+        Di antara aroma kopi yang menggoda dan senyum hangat, ada sebuah tempat
+        yang mengubah setiap kunjungan menjadi petualangan rasa
+      </p>
+
+      <div class="row">
+        <div class="cafe-card">
+          <div class="cafe-icons">
+            <a href="#"
+              ><img
+                src="{{ url_for('static', filename='img/save.svg') }}"
+                class="img-logo"
+            /></a>
+            <a href="#" class="item-detail-button"
+              ><img
+                src="{{ url_for('static', filename='img/eye.svg') }}"
+                class="img-logo"
+            /></a>
+          </div>
+
+          <div class="cafe-image">
+            <img
+              src="{{ url_for('static', filename='img/sincerely-media-VNsdEl1gORk-unsplash (1).jpg') }}"
+            />
+          </div>
+
+          <div class="cafe-content">
+            <h3>Bento Kopi Godean</h3>
+            <div class="cafe-stars">
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+            </div>
+          </div>
+
+          <div class="cafe-closed">
+            <p>jam operasional : 09.00 - 23.00</p>
+          </div>
+
+          <div class="cafe-location">
+            <p>lokasi : jln.Magelang</p>
+          </div>
+        </div>
+
+        <div class="cafe-card">
+          <div class="cafe-icons">
+            <a href="#"
+              ><img
+                src="{{ url_for('static', filename='img/save.svg') }}"
+                class="img-logo"
+            /></a>
+            <a href="#" class="item-detail-button"
+              ><img
+                src="{{ url_for('static', filename='img/eye.svg') }}"
+                class="img-logo"
+            /></a>
+          </div>
+
+          <div class="cafe-image">
+            <img
+              src="{{ url_for('static', filename='img/sincerely-media-VNsdEl1gORk-unsplash (1).jpg') }}"
+            />
+          </div>
+
+          <div class="cafe-content">
+            <h3>Bento Kopi Godean</h3>
+            <div class="cafe-stars">
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+            </div>
+          </div>
+
+          <div class="cafe-closed">
+            <p>jam operasional : 09.00 - 23.00</p>
+          </div>
+
+          <div class="cafe-location">
+            <p>lokasi : jln.Magelang</p>
+          </div>
+        </div>
+
+        <div class="cafe-card">
+          <div class="cafe-icons">
+            <a href="#"
+              ><img
+                src="{{ url_for('static', filename='img/save.svg') }}"
+                class="img-logo"
+            /></a>
+            <a href="#" class="item-detail-button"
+              ><img
+                src="{{ url_for('static', filename='img/eye.svg') }}"
+                class="img-logo"
+            /></a>
+          </div>
+
+          <div class="cafe-image">
+            <img
+              src="{{ url_for('static', filename='img/sincerely-media-VNsdEl1gORk-unsplash (1).jpg') }}"
+            />
+          </div>
+
+          <div class="cafe-content">
+            <h3>Bento Kopi Godean</h3>
+            <div class="cafe-stars">
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+              <i data-feather="star"></i>
+            </div>
+          </div>
+
+          <div class="cafe-closed">
+            <p>jam operasional : 09.00 - 23.00</p>
+          </div>
+
+          <div class="cafe-location">
+            <p>lokasi : jln.Magelang</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- modal box item detail -->
+    <div class="modal" id="item-detail-modal">
+      <div class="modal-container">
+        <a href="#" class="close-icon"
+          ><img src="{{ url_for('static', filename='img/x.svg') }}"
+        /></a>
+        <div class="modal-content">
+          <img
+            src="{{ url_for('static', filename='img/sincerely-media-VNsdEl1gORk-unsplash (1).jpg') }}"
+          />
+          <div class="cafe-content">
+            <h3>Bento kopi Godean</h3>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Consequuntur non quibusdam illo accusamus quia illum aspernatur
+              maiores adipisci inventore porro! Eos modi praesentium facere quam
+              velit? Voluptas voluptatem rem similique.
+            </p>
+            <ul>
+              <p>Fasilitas</p>
+              <li>wifi</li>
+              <li>Fasilitas</li>
+              <li>Fasilitas</li>
+            </ul>
+            <a href="#" id="history" class="history"
+              ><span>Tambahkan Ingin dikunjungi</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal box item detail -->
+
+    <!-- my script -->
+    <script src="{{ url_for('static', filename='js/cafe.js') }}"></script>
+  </body>
+</html>

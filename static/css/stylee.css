@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  height: 100vh;
+  background: -webkit-repeating-linear-gradient(-45deg, #71b7e6, #69a6ce, #b98acc, #ee8176, #b98acc, #69a6ce, #9b59b6);
+  background-size: 400%;
+}
+#error-page{
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  right: 15%;
+  bottom: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+#error-page .content{
+  max-width: 600px;
+  text-align: center;
+}
+
+.content {
+    text-align: center; /* Menengahkan horizontal */
+    max-width: 600px; /* Maksimum lebar konten */
+  }
+  
+.content img {
+    max-width: 100%; /* Maksimum lebar gambar */
+    max-height: 200px; /* Maksimum tinggi gambar */
+    height: auto; /* Mempertahankan proporsi gambar */
+    margin-bottom: 20px; /* Memberikan margin bawah */
+  }
+
+
+@keyframes animate {
+  0%{
+    background-position: 0 0;
+  }
+  25%{
+    background-position: 100% 0;
+  }
+  50%{
+    background-position: 100% 100%;
+  }
+  75%{
+    background-position: 0% 100%;
+  }
+  100%{
+    background-position: 0% 0%;
+  }
+}
+.content h4{
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #000;
+  font-size: 2em;
+  max-width: 600px;
+  position: relative;
+}
+.content h4:after{
+  position: absolute;
+  content: attr(data-text);
+  top: 0;
+  left: 0;
+  right: 0;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.4);
+  /* -webkit-background-clip: text; */
+  -webkit-text-fill-color: transparent;
+}
+.content p{
+  font-size: 1.2em;
+  color: #0d0d0d;
+}
+.content .btns{
+  margin: 25px 0;
+  display: inline-flex;
+}
+.content .btns a{
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  border: 2px solid #69a6ce;
+  color: #69a6ce;
+  font-weight: 500;
+  padding: 10px 25px;
+  border-radius: 25px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.content .btns a:hover{
+  background: #69a6ce;
+  color: #fff;
+}
+
+#pengguna_session {
+  font-weight: 700;
+  font-size: large;
+}
+
+
+/* Stil umum */
+/* ... (kode CSS Anda sebelumnya) ... */
+
+/* Media query untuk layar dengan lebar kurang dari atau sama dengan 768px */
+@media only screen and (max-width: 768px) {
+    body {
+      padding: 20px; /* Tambahkan ruang di sekitar body untuk konten yang lebih baik pada layar kecil */
+    }
+  
+    #error-page {
+      top: 5%; /* Menggeser konten ke atas pada layar kecil */
+      left: 5%; /* Menggeser konten ke kiri pada layar kecil */
+      right: 5%; /* Menggeser konten ke kanan pada layar kecil */
+      bottom: 5%; /* Menggeser konten ke bawah pada layar kecil */
+    }
+  
+    .content {
+      max-width: 90%; /* Mengurangi lebar konten pada layar kecil */
+    }
+  
+    .content h4 {
+      font-size: 1.2em; /* Mengurangi ukuran font pada judul */
+    }
+  
+    .content p {
+      font-size: 1em; /* Mengurangi ukuran font pada paragraf */
+    }
+  
+    .content .btns {
+      flex-direction: column; /* Menata tombol dalam satu kolom pada layar kecil */
+      margin: 15px 0; /* Memberikan ruang antara tombol pada layar kecil */
+    }
+  
+    .content .btns a {
+      display: block; /* Mengubah tautan tombol menjadi blok untuk tata letak vertikal */
+      margin: 10px auto; /* Menengahkan tombol */
+    }
+  }
+  

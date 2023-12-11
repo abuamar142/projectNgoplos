@@ -22,19 +22,23 @@
           pengalaman bersama kami.
         </p>
         <div class="btns">
-          <a href="/cafe_login">lanjutkan Ke aplikasi</a>
+          <a href="/home_login">lanjutkan Ke aplikasi</a>
         </div>
       </div>
     </div>
 
+    <!-- script -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        Swal.fire({
-          title: "New Member!",
-          text: "Anda telah berhasil Registrasi",
-          icon: "success",
-          confirmButtonText: "OK",
-        });
+        var successMessage = "{{ session.get('message') }}";
+        if (successMessage) {
+          Swal.fire({
+            title: "Berhasil!",
+            text: successMessage,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+        }
       });
     </script>
 

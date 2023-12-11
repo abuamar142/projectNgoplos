@@ -8,7 +8,6 @@ class user:
         self.username = username
         self.password = password
         self.role = role
-
     
     def openDB(self):
         self.db = pymysql.connect(
@@ -19,14 +18,12 @@ class user:
         )
         self.cursor = self.db.cursor() if self.db else None
 
-
     def closeDB(self):
         self.db.close()
 
     def insertDB(self, data):
         self.openDB()
         username, password, role = data
-
         # Simpan kata sandi langsung ke database tanpa hashing
         sql = "INSERT INTO user (username, password, role) VALUES (%s, %s, %s)"
         self.cursor.execute(sql, (username, password, role))
@@ -41,7 +38,6 @@ class user:
         self.closeDB()
         return akun
 
-
     def check_username_or_password(self, username, password):
         self.openDB()
         # Bandingkan kata sandi langsung dari input pengguna dengan yang disimpan dalam database
@@ -49,10 +45,6 @@ class user:
         akun = self.cursor.fetchone()
         self.closeDB()
         return akun
-
-
-
-
 
 class Cafe:
     def __init__(self, id=None, foto=None, nama=None, nama_lokasi=None, Link_gmaps=None, deskripsi=None, jam_buka=None, jam_tutup=None, status=None, user_id=None):
@@ -196,11 +188,9 @@ class Cafe:
                     'jam_buka': data[0][5],
                     'jam_tutup': data[0][6],
                     # ... Informasi lainnya ...
-
                     # Data menu dari database
                     'menus': []  # Isi ini dengan data menu dari database
                 }
-
                 # Ambil data menu dari database berdasarkan cafe_id
                 menu_query = "SELECT Nama AS menu_nama, Harga FROM menu WHERE cafe_id = %s"
                 self.cursor.execute(menu_query, (cafe_id,))
@@ -267,3 +257,16 @@ class Cafe:
         except pymysql.Error as e:
             print("Error retrieving cafe data:", e)
             return None
+    
+    def insertBasicInfo(self, nama_cafe, nama_lokasi, link_gmaps):
+        try:
+            self.openDB()
+            sql = "INSERT INTO cafe (nama, nama_lokasi, Link_gmaps) VALUES (%s, %s, %s)"
+            self.cursor.execute(sql, (nama_cafe, nama_lokasi, link_gmaps))
+            self.db.commit()
+            self.closeDB()
+            return True
+        except pymysql.Error as e:
+            print("Error inserting basic info into cafe table:", e)
+            return False
+

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head html -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/tailwind.css') }}"
+    />
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Include jQuery Timepicker CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.css"
+    />
+
+    <!-- Include jQuery Timepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js"></script>
+
+    <title>Ngoplos Dashboard</title>
+  </head>
+
+  <!-- Body html -->
+  <body class="h-screen bg-gradient p-4 flex">
+    <!-- Side bar -->
+    <div
+      id="sidebar"
+      class="w-1/6 text-white flex flex-col items-center justify-between p-4"
+    >
+      <!-- Logo -->
+      <img
+        src="{{ url_for('static', filename='img/Logo.png') }}"
+        alt="ngoplos-logo"
+      />
+
+      <!-- Tombol sidebar -->
+      <nav class="flex flex-col gap-3 h-full items-center justify-center">
+        <a
+          href="{{ url_for('dashboard') }}"
+          id="dashboard-btn"
+          class="text-black text-sm hover:text-white py-1"
+          >Dashboard</a
+        >
+        <a
+          href="{{ url_for('cafe_owner') }}"
+          id="cafe-owner-btn"
+          class="text-black text-sm hover:text-white py-1"
+          >Cafe Owner</a
+        >
+        <a
+          href="#"
+          id="add-cafe-btn"
+          class="text-black text-sm hover:text-white border-2 border-black px-12 py-1 rounded-md"
+          >Add Cafe</a
+        >
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <div id="content" class="flex-1 p-4">
+      <!-- Header -->
+      <header class="flex justify-between items-center">
+        <div class="text-xl font-semibold">Hai admin!</div>
+        <a
+          href="{{ url_for('logout') }}"
+          class="text-black text-sm rounded-md py-1 px-3 border-2 border-black"
+          >Logout</a
+        >
+      </header>
+
+      <!-- Modal -->
+      <!-- Add menu -->
+      <!-- Pop-up container -->
+      <div id="menuModal" class="hidden">
+        <div class="bg-white p-8 max-w-4xl mx-auto rounded">
+          <h2 class="text-xl my-8 text-center">You can add menu here or you can manage menu in cafe details after adding cafe</h2>
+
+          <!-- List of added menus (initially empty) -->
+          <label for="menuList" class="block text-sm text-black"
+            >Menu Added</label
+          >
+          <div id="menuList" class="mb-4 text-sm text-center">Empty</div>
+
+          <!-- Form for adding new menu -->
+          <form id="addMenuForm">
+            <div class="mb-4">
+              <label for="menuCategory" class="block text-sm text-black"
+                >Menu Category</label
+              >
+              <select
+                id="menuCategory"
+                name="menuCategory"
+                class="w-full px-4 py-2 mt-1 text-sm border border-black rounded-md focus:outline-none focus:border-blue-400 bg-transparent"
+                required
+              >
+                <option value="" disabled selected>Select category</option>
+                <option value="food">Food</option>
+                <option value="drink">Drink</option>
+                <option value="snack">Snack</option>
+              </select>
+            </div>
+
+            <div class="mb-4">
+              <label for="menuName" class="block text-sm text-black"
+                >Menu Name</label
+              >
+              <input
+                type="text"
+                id="menuName"
+                name="menuName"
+                class="w-full px-4 py-2 mt-1 text-sm border border-black rounded-md focus:outline-none focus:border-blue-400 bg-transparent placeholder-slate-600"
+                placeholder="Enter menu name"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="menuPrice" class="block text-sm text-black"
+                >Menu Price</label
+              >
+              <input
+                type="text"
+                id="menuPrice"
+                name="menuPrice"
+                class="w-full px-4 py-2 mt-1 text-sm border border-black rounded-md focus:outline-none focus:border-blue-400 bg-transparent placeholder-slate-600"
+                pattern="^\d+$"
+                placeholder="Enter menu price"
+                required
+              />
+            </div>
+
+            <button
+              type="button"
+              id="saveMenu"
+              class="bg-primary w-full text-sm text-white py-2 px-4 rounded mb-4"
+            >
+              Add
+            </button>
+
+            <button
+              type="button"
+              id="backButtonMenu"
+              class="bg-warning w-full text-sm text-white py-2 px-4 rounded"
+            >
+              Back
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Add fasilitas -->
+      <!-- Pop-up container -->
+      <div id="fasilitasModal" class="hidden">
+        <div class="bg-white p-8 max-w-4xl mx-auto rounded">
+          <h2 class="text-xl my-8 text-center">You can add fasilitas here or you can manage fasilitas in cafe details after adding cafe</h2>
+
+          <!-- List of added ficilities (initially empty) -->
+          <label for="fasilitasList" class="block text-sm text-black"
+            >Menu Added</label
+          >
+          <div id="fasilitasList" class="mb-4 text-sm text-center">Empty</div>
+
+          <!-- Form for adding new fasilitas -->
+          <form id="addFasilitasForm">
+            <div class="mb-4">
+              <label for="menuCategory" class="block text-sm text-black"
+                >Menu Category</label
+              >
+              <select
+                id="menuCategory"
+                name="menuCategory"
+                class="w-full px-4 py-2 mt-1 text-sm border border-black rounded-md focus:outline-none focus:border-blue-400 bg-transparent"
+                required
+              >
+                <option value="" disabled selected>Select category</option>
+                <option value="food">Food</option>
+                <option value="drink">Drink</option>
+                <option value="snack">Snack</option>
+              </select>
+            </div>
+
+            <div class="mb-4">
+              <label for="menuName" class="block text-sm text-black"
+                >Menu Name</label
+              >
+              <input
+                type="text"
+                id="menuName"
+                name="menuName"
+                class="w-full px-4 py-2 mt-1 text-sm border border-black rounded-md focus:outline-none focus:border-blue-400 bg-transparent placeholder-slate-600"
+                placeholder="Enter menu name"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="menuPrice" class="block text-sm text-black"
+                >Menu Price</label
+              >
+              <input
+                type="text"
+                id="menuPrice"
+                name="menuPrice"
+                class="w-full px-4 py-2 mt-1 text-sm border border-black rounded-md focus:outline-none focus:border-blue-400 bg-transparent placeholder-slate-600"
+                pattern="^\d+$"
+                placeholder="Enter menu price"
+                required
+              />
+            </div>
+
+            <button
+              type="button"
+              id="saveMenu"
+              class="bg-primary w-full text-sm text-white py-2 px-4 rounded mb-4"
+            >
+              Add
+            </button>
+
+            <button
+              type="button"
+              id="backButtonMenu"
+              class="bg-warning w-full text-sm text-white py-2 px-4 rounded"
+            >
+              Back
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div id="containerContent">
+        <!-- Add cafe content -->
+        <main id="add-cafe-content" class="justify-start">
+          <div class="my-4">
+            <p class="text-xl text-center">You can add cafe here</p>
+          </div>
+
+          <form class="max-w-4xl mx-auto">
+            <!-- Add cafe name -->
+            <div class="mb-4">
+              <label for="cafeName" class="block text-sm text-black">
+                Cafe Name
+              </label>
+              <input
+                type="text"
+                id="cafeName"
+                name="cafeName"
+                placeholder="Input your cafe name here"
+                class="w-full px-4 py-2 mt-1 text-sm border border-black rounded-md focus:outline-none focus:border-primary bg-transparent placeholder-slate-600"
+                required
+              />
+            </div>
+
+            <!-- Add cafe decription -->
+            <div class="mb-4">
+              <label for="description" class="block text-sm text-black">
+                Description
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                placeholder="Input your cafe description"
+                class="w-full px-4 py-2 mt-1 text-sm border border-black rounded-md resize-none focus:outline-none focus:border-primary bg-transparent placeholder-slate-600"
+                required
+              ></textarea>
+            </div>
+
+            <!-- Add maps link -->
+            <div class="mb-4">
+              <label for="mapsLink" class="block text-sm text-black">
+                Maps Link
+              </label>
+              <input
+                type="text"
+                id="mapsLink"
+                name="mapsLink"
+                placeholder="Input your cafe maps link from Google Maps"
+                class="w-full px-4 py-2 mt-1 text-sm border border-black rounded-md focus:outline-none focus:border-primary bg-transparent placeholder-slate-600"
+                required
+              />
+            </div>
+
+            <!-- Add menu -->
+            <!-- Add menu button -->
+            <div class="mb-4">
+              <label for="addMenu" class="block text-sm text-black">
+                Add Menu
+              </label>
+              <button
+                type="button"
+                id="addMenu"
+                class="bg-primary w-full text-sm text-white py-2 px-4 rounded"
+              >
+                Add Menu
+              </button>
+            </div>
+
+            <!-- Add fasilitas -->
+            <div class="mb-4">
+              <label for="addFasilitas" class="block text-sm text-black">
+                Add Fasilitas
+              </label>
+              <button
+                type="button"
+                id="addFasilitas"
+                class="bg-primary w-full text-sm text-white py-2 px-4 rounded"
+              >
+                Add Fasilitas
+              </button>
+            </div>
+
+            <!-- Add foto -->
+            <div class="mb-4">
+              <label for="addFoto" class="block text-sm text-black">
+                Add Foto
+              </label>
+              <button
+                type="button"
+                id="addFoto"
+                class="bg-primary w-full text-sm text-white py-2 px-4 rounded"
+              >
+                Add Foto
+              </button>
+            </div>
+
+            <!-- Jam buka dan tutup -->
+            <div class="mb-4">
+              <label for="openingHours" class="block text-sm text-black">
+                Opening Hours
+              </label>
+              <div class="flex items-center">
+                <input
+                  type="text"
+                  id="openingHours"
+                  name="openingHours"
+                  class="w-1/2 px-4 py-2 mt-1 text-sm border border-black rounded-md focus:outline-none focus:border-blue-400 bg-transparent placeholder-slate-600"
+                  oninput="validateTimeFormat(this)"
+                  placeholder="Opening"
+                  required
+                />
+                <span class="mx-4">to</span>
+                <input
+                  type="text"
+                  id="closingHours"
+                  name="closingHours"
+                  class="w-1/2 px-4 py-2 mt-1 text-sm border border-black rounded-md focus:outline-none focus:border-blue-400 bg-transparent placeholder-slate-600"
+                  oninput="validateTimeFormat(this)"
+                  placeholder="Closing"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Save button -->
+            <button
+              type="submit"
+              class="bg-primary w-full text-sm text-white my-4 py-2 px-4 rounded"
+            >
+              Save
+            </button>
+          </form>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      function validateTimeFormat(input) {
+        var regex = /^([01]?\d|2[0-3]):[0-5]\d$/;
+
+        if (!regex.test(input.value)) {
+          input.setCustomValidity("Please enter a valid time (HH:MM)");
+        } else {
+          input.setCustomValidity("");
+        }
+      }
+    </script>
+
+    <script>
+      const menuModal = document.getElementById("menuModal");
+      const containerContent = document.getElementById("containerContent");
+
+      const addMenu = document.getElementById("addMenu");
+      const saveMenu = document.getElementById("saveMenu");
+      const backButtonMenu = document.getElementById("backButtonMenu");
+
+      backButtonMenu.addEventListener("click", function () {
+        containerContent.classList.remove("hidden");
+        menuModal.classList.add("hidden");
+      });
+
+      addMenu.addEventListener("click", function () {
+        // Show the modal
+        menuModal.classList.remove("hidden");
+        containerContent.classList.add("hidden");
+      });
+
+      // List untuk menyimpan menu
+      var menuListData = [];
+
+      saveMenu.addEventListener("click", function () {
+        // Add menu to the list
+        const menuCategory = document.getElementById("menuCategory").value;
+        const menuName = document.getElementById("menuName").value;
+        const menuPrice = document.getElementById("menuPrice").value;
+
+        // Cek jika form tidak kosong dan bagian price berisi angka
+        if (menuCategory.trim() === "" || menuName.trim() === "" || isNaN(menuPrice)) {
+          alert(
+            "Please fill in all fields and enter a valid number for Menu Price."
+          );
+          return;
+        }
+
+        // Add menu to the list
+        const menuData = {category: menuCategory, name: menuName, price: parseFloat(menuPrice) };
+        menuListData.push(menuData);
+
+        // Render menu list
+        renderMenuList();
+
+        // Clear form fields
+        document.getElementById("menuCategory").value = "";
+        document.getElementById("menuName").value = "";
+        document.getElementById("menuPrice").value = "";
+      });
+
+      // Render menu list
+      function renderMenuList() {
+        const menuListContainer = document.getElementById("menuList");
+        menuListContainer.innerHTML = "";
+
+        if (menuListData.length === 0) {
+          menuListContainer.textContent = "Empty";
+        } else {
+          menuListData.forEach(function (menu, index) {
+            const menuItem = document.createElement("div");
+            menuItem.textContent = `${menu.category} - ${menu.name} - ${menu.price}`;
+            menuListContainer.appendChild(menuItem);
+          });
+        }
+      }
+
+      const fasilitasModal = document.getElementById("fasilitasModal");
+
+      const addFasilitas = document.getElementById("addMenu");
+      const saveFasilitas = document.getElementById("saveFasilitas");
+      const backButtonFasilitas = document.getElementById("backButtonFasilitas");
+
+      backButtonFasilitas.addEventListener("click", function () {
+        containerContent.classList.remove("hidden");
+        menuModal.classList.add("hidden");
+      });
+
+      addFasilitas.addEventListener("click", function () {
+        // Show the modal
+        fasilitasModal.classList.remove("hidden");
+        containerContent.classList.add("hidden");
+      });
+
+      // List untuk menyimpan menu
+      var fasilitasListData = [];
+
+      saveFasilitas.addEventListener("click", function () {
+        // Add menu to the list
+        const menuCategory = document.getElementById("menuCategory").value;
+        const menuName = document.getElementById("menuName").value;
+        const menuPrice = document.getElementById("menuPrice").value;
+
+        // Cek jika form tidak kosong dan bagian price berisi angka
+        if (menuCategory.trim() === "" || menuName.trim() === "" || isNaN(menuPrice)) {
+          alert(
+            "Please fill in all fields and enter a valid number for Menu Price."
+          );
+          return;
+        }
+
+        // Add menu to the list
+        const menuData = {category: menuCategory, name: menuName, price: parseFloat(menuPrice) };
+        menuListData.push(menuData);
+
+        // Render menu list
+        renderMenuList();
+
+        // Clear form fields
+        document.getElementById("menuCategory").value = "";
+        document.getElementById("menuName").value = "";
+        document.getElementById("menuPrice").value = "";
+      });
+
+      // Render menu list
+      function renderFasilitasList() {
+        const fasilitasListContainer = document.getElementById("fasilitasList");
+        fasilitasListContainer.innerHTML = "";
+
+        if (fasilitasListData.length === 0) {
+          fasilitasListContainer.textContent = "Empty";
+        } else {
+          fasilitasListData.forEach(function (fasilitas, index) {
+            const fasilitasItem = document.createElement("div");
+            fasilitasItem.textContent = `${fasilitas.category} - ${fasilitas.name} - ${fasilitas.price}`;
+            fasilitasListContainer.appendChild(menuItem);
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

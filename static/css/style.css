@@ -43,19 +43,106 @@ body {
 }
 
 .navbar .navbar-nav .logout-btn {
-  border: none;
-  outline: none;
-  background: var(--primary);
+  border: 1px solid var(--bg);
+  background: none;
   color: var(--bg);
   font-size: 1rem;
   padding: 10px 18px;
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.15s ease;
+  width: max-content;
+  text-decoration: none;
+}
+
+.navbar .navbar-nav .logout-btn a {
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
 }
 
 .navbar .navbar-nav .logout-btn:hover {
-  background: #ddd;
+  background: var(--primary);
+}
+
+.input-box .search-form {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out,
+    visibility 0s linear 0.3s;
+  position: absolute;
+  height: 60px;
+  max-width: 86%;
+  width: 86%;
+  background: #fff;
+  margin: 0 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.input-box .search-form.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out,
+    visibility 0s linear 0s;
+}
+
+.input-box .search-form i {
+  margin-left: 20px;
+  font-size: 30px;
+  color: #707070;
+}
+
+.input-box .search-form input {
+  height: 100%;
+  width: calc(100% - 90px);
+  outline: none;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  padding: 0 15px;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.input-box .search-form .button {
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 6px;
+  background-color: #4070f4;
+  cursor: pointer;
+}
+
+.input-box .search-form .button:active {
+  transform: translateY(-50%) scale(0.98);
+}
+@media screen and (max-width: 500px) {
+  .input-box {
+    height: 30px;
+    margin: 0;
+    padding: 0 8px;
+  }
+
+  .input-box .search-form input {
+    padding: 15px 20px;
+  }
+
+  .input-box .search-form .button {
+    padding: 10px 18px;
+  }
 }
 
 .navbar .navbar-extra a:hover {
@@ -86,7 +173,7 @@ body {
   transform: scaleX(0.7);
 }
 
-.navbar .navbar- #hamburger-menu {
+.navbar .navbar-nav #hamburger-menu {
   display: none;
 }
 
@@ -120,12 +207,33 @@ body {
   color: var(--primary);
 }
 
+.cafe .row .cafe-card {
+  margin-top: 0;
+}
+
+.input-box,
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+.input-box .search-form {
+  margin: 0;
+  padding: 0;
+}
+
+.row .cafe-card {
+  margin: 0;
+  padding: 0;
+}
+
 /* rekomendasis ection */
 .rekomendasi .row {
   display: flex;
   margin-top: 2rem;
   background-color: #87bcdb;
   border-radius: 5px;
+  height: 450px;
   /* flex-wrap: wrap; */
 }
 
@@ -133,14 +241,14 @@ body {
   margin-left: 10px;
   flex: 1 1 45rem;
   width: 100%;
-  object-fit: cover;
-  overflow: hidden;
+  min-height: 0;
 }
 
 .rekomendasi .row form {
   flex: 1 1 45rem;
   padding: 1rem 3rem;
   text-align: center;
+  overflow: auto;
 }
 
 .rekomendasi .row form .input-group {
@@ -376,6 +484,8 @@ body {
 /* modal box */
 /* product section */
 
+/*/* ... kode sebelumnya ... */
+
 /* tablet */
 @media (max-width: 768px) {
   html {
@@ -404,16 +514,6 @@ body {
     right: 0;
   }
 
-  .navbar .navbar-nav .logout-btn,
-  .navbar .navbar-nav a {
-    color: var(--bg);
-    display: block;
-    margin: 1.5rem;
-    padding: 0.5rem;
-    font-size: 2rem;
-  }
-
-  .navbar .navbar-nav .logout-btn,
   .navbar .navbar-nav a {
     color: var(--bg);
     display: block;
@@ -421,16 +521,56 @@ body {
     padding: 0.5rem;
     font-size: 2rem;
     background-color: transparent;
+    border: none;
   }
 
-  .navbar .navbar-nav .logout-btn::after,
   .navbar .navbar-nav a::after {
     transform-origin: 0 0;
+    content: "";
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid var(--primary);
+    transform: scaleX(0);
+    transition: 0.2s linear;
   }
 
-  .navbar .navbar-nav .logout-btn:hover::after
   .navbar .navbar-nav a:hover::after {
-    transform: scaleX(0.2);
+    transform: scaleX(0.7);
+  }
+
+  .navbar .navbar-nav .logout-btn {
+    color: black;
+    display: block;
+    margin: 1.5rem;
+    padding: 0.5rem;
+    font-size: 2rem;
+    background-color: transparent;
+    border: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .navbar .navbar-nav .logout-btn::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0.1rem;
+    background-color: var(--primary);
+    transition: width 0.2s ease, left 0.2s ease;
+    transform: translateX(-50%);
+  }
+
+  .navbar .navbar-nav .logout-btn:hover::after {
+    width: 100%;
+    left: 0;
+  }
+
+  .navbar .navbar-nav .logout-btn:hover {
+    color: var(--primary);
+    transform: translateX(5px);
   }
 
   .rekomendasi .row {

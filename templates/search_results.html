@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <title>Ngoplos</title>
+  </head>
+  <body>
+    <!-- Navbar start -->
+    <nav class="navbar">
+      <img
+        src="{{ url_for('static', filename='img/Logo.png') }}"
+        alt="Logo"
+        class="navbar-logo"
+      />
+      <div class="navbar-nav">
+        <a href="/home_login">Home</a>
+        <a href="/cafe_login">Cafe</a>
+        <a href="/rekomendasi">Rekomendasikan</a>
+        <button class="logout-btn" id="logout">
+          <a href="/logout">logout</a>
+        </button>
+      </div>
+
+      <div class="navbar-extra">
+        <a href="#" id="search-button"
+          ><img src="{{ url_for('static', filename='img/search.svg') }}"
+        /></a>
+        <a href="#" id="save"
+          ><img src="{{ url_for('static', filename='img/save.svg') }}"
+        /></a>
+        <a href="#" id="hamburger-menu"
+          ><img src="{{ url_for('static', filename='img/align-justify.svg') }}"
+        /></a>
+      </div>
+    </nav>
+
+    <section class="cafe" id="cafe">
+      <h2>Hasil Pencarian untuk "<span>{{ query }}</span>"</h2>
+      <div class="row">
+        {% for location in locations %}
+        <div class="cafe-card">
+          <div class="cafe-icons">
+            <a href="#"
+              ><img
+                src="{{ url_for('static', filename='img/save.svg') }}"
+                class="img-logo"
+            /></a>
+            <a
+              href="#"
+              class="item-detail-button"
+              data-id="{{ location.cafe_id }}"
+              ><img
+                src="{{ url_for('static', filename='img/eye.svg') }}"
+                class="img-logo"
+            /></a>
+          </div>
+
+          <div class="cafe-image">
+            <img
+              src="{{ url_for('static', filename='img/sincerely-media-VNsdEl1gORk-unsplash (1).jpg') }}"
+            />
+          </div>
+
+          <div class="cafe-content">
+            <h3>{{ location.nama_cafe }}</h3>
+          </div>
+
+          <div class="cafe-content">
+            <p>{{ location.deskripsi }}</p>
+          </div>
+
+          <div class="cafe-closed">
+            <p>
+              jam operasional : {{ location.jam_buka }} wib - {{
+              location.jam_tutup }} wib
+            </p>
+          </div>
+
+          <div class="cafe-location">
+            <p>lokasi : {{ location.nama_lokasi }}</p>
+          </div>
+
+          <div>
+            <a href="/cafe_detail/{{ location.cafe_id }}">Lihat Detail</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- my script -->
+    <script src="{{ url_for('static', filename='js/cafe.js') }}"></script>
+  </body>
+</html>

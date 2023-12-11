@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Unicons CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <title>Ngoplos</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <img
+        src="{{ url_for('static', filename='img/Logo.png') }}"
+        alt="Logo"
+        class="navbar-logo"
+      />
+      <div class="navbar-nav">
+        <a href="/home_login">Home</a>
+        <a href="/cafe_login">Cafe</a>
+        <a href="/rekomendasi">Rekomendasikan</a>
+        <button class="logout-btn" id="logout">
+          <a href="/logout">logout</a>
+        </button>
+      </div>
+      <div class="navbar-extra">
+        <a href="#" id="search-button"
+          ><img src="{{ url_for('static', filename='img/search.svg') }}"
+        /></a>
+        <a href="#" id="hamburger-menu"
+          ><img src="{{ url_for('static', filename='img/align-justify.svg') }}"
+        /></a>
+      </div>
+    </nav>
+
+    <section class="cafe" id="cafe">
+      <h2>Ca<span>fe</span></h2>
+      <p>
+        Di antara aroma kopi yang menggoda dan senyum hangat, ada sebuah tempat
+        yang mengubah setiap kunjungan menjadi petualangan rasa
+      </p>
+
+      <div class="input-box">
+        <form action="/search" method="POST" class="search-form">
+          <i class="uil uil-search"></i>
+          <input
+            type="search"
+            name="search_query"
+            id="search-box"
+            placeholder="Cari Lokasi ...."
+          />
+          <button class="button" type="submit">Cari</button>
+        </form>
+      </div>
+
+      <div class="row">
+        {% for cafe_item in cafe_data %}
+        <div class="cafe-card">
+          <div class="cafe-icons">
+            <a href="#"
+              ><img
+                src="{{ url_for('static', filename='img/save.svg') }}"
+                class="img-logo"
+            /></a>
+            <a href="#" class="item-detail-button" data-id="{{ cafe_item.id }}"
+              ><img
+                src="{{ url_for('static', filename='img/eye.svg') }}"
+                class="img-logo"
+            /></a>
+          </div>
+
+          <div class="cafe-image">
+            <img
+              src="{{ url_for('static', filename='img/sincerely-media-VNsdEl1gORk-unsplash (1).jpg') }}"
+            />
+          </div>
+
+          <div class="cafe-content">
+            <h3>{{ cafe_item.nama_cafe }}</h3>
+          </div>
+
+          <div class="cafe-closed">
+            <p>
+              jam operasional : {{ cafe_item.jam_buka }} wib - {{
+              cafe_item.jam_tutup }} wib
+            </p>
+          </div>
+
+          <div class="cafe-location">
+            <p>lokasi : {{ cafe_item.nama_lokasi }}</p>
+          </div>
+
+          <div>
+            <a href="/cafe_detail/{{ cafe_item.cafe_id }}">Lihat Detail</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- modal box item detail -->
+    {% for cafe_item in cafe_data %}
+    <div class="modal" id="modal{{ cafe_item.id }}">
+      <div class="modal-container">
+        <a href="#" class="close-icon"
+          ><img src="{{ url_for('static', filename='img/x.svg') }}"
+        /></a>
+        <div class="modal-content">
+          <img
+            src="{{ url_for('static', filename='img/sincerely-media-VNsdEl1gORk-unsplash (1).jpg') }}"
+          />
+          <div class="cafe-content">
+            <h3>{{ cafe_item.nama_cafe }}</h3>
+            <p>{{ cafe_item.deskripsi }}</p>
+            <p>Kategori Menu: {{ cafe_item.Kategori }}</p>
+            <p>Menu: {{ cafe_item.menu_nama }}</p>
+            <p>Harga: {{ cafe_item.Harga }}</p>
+            <p>Jam Buka: {{ cafe_item.jam_buka }}</p>
+            <p>Jam Tutup: {{ cafe_item.jam_tutup }}</p>
+            <a href="#" id="history" class="history"
+              ><span>Tambahkan Ingin dikunjungi</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- modal box item detail -->
+
+    <!-- my script -->
+    <script src="{{ url_for('static', filename='js/cafe.js') }}"></script>
+  </body>
+</html>

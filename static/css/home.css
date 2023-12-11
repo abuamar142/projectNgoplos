@@ -1,6 +1,4 @@
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500;9..40,700&display=swap');
-</style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&family=Roboto&display=swap");
 
 :root {
   --primary: #047bc1;
@@ -17,6 +15,7 @@
 }
 
 body {
+  font-family: "Poppins", sans-serif;
   background-image: url("../img/Landing\ Page-1.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -70,6 +69,16 @@ body {
   border-radius: 3px;
   cursor: pointer;
   transition: 0.15s ease;
+}
+
+.navbar .navbar-nav .logout-btn {
+  background: none;
+  font-size: 1rem;
+  border-radius: 3px;
+  cursor: pointer;
+  height: 40px;
+  border: 1px solid var(--bg);
+  border-radius: 10px;
 }
 
 .login-btn:hover {
@@ -352,20 +361,18 @@ form .input-field {
 .navbar .navbar-nav a {
   color: black;
   display: inline-block;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0 20px;
+  font-size: 1.5rem;
+  margin: 0 1rem;
 }
 
 .navbar .navbar-nav .login-btn {
   color: black;
   display: inline-block;
-  font-size: 14px;
-  font-weight: bold,
-  margin: 0 0 0 20px;
-  border: 2px solid black; /* Border hitam */
-  border-radius: 10px; /* Radius sudut */
-  padding: 10px 20px;
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  border: 1px solid black; /* Border hitam */
+  border-radius: 8px; /* Radius sudut */
+  padding: 8px 16px;
   text-decoration: none;
   cursor: pointer;
   background-color: transparent; /* Hapus background-color */
@@ -419,7 +426,7 @@ section {
 }
 
 .hero-text h1 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 40px;
   line-height: 1;
   color: black;
@@ -439,7 +446,6 @@ section {
   font-size: 14px;
   transition: all 0.55s ease;
   margin-top: 2rem;
-  padding: 5px;
 }
 
 .hero-text a:hover {
@@ -618,7 +624,7 @@ footer {
     display: block;
     margin: 1.5rem;
     padding: 0.5rem;
-    font-size: 16px;
+    font-size: 2rem;
   }
 
   .navbar .navbar-nav a::after {
@@ -634,7 +640,7 @@ footer {
     display: block;
     margin: 1.5rem;
     padding: 0.5rem;
-    font-size: 16px;
+    font-size: 2rem;
   }
 
   .navbar .navbar-nav .login-btn::after {
@@ -644,17 +650,31 @@ footer {
   .navbar .navbar-nav .login-btn:hover::after {
     transform: scaleX(0.2);
   }
+  .navbar .navbar-nav .logout-btn {
+    color: var(--bg);
+    display: block;
+    margin: 1.5rem;
+    padding: 0.5rem;
+    font-size: 2rem;
+    border: none;
+  }
+
+  .navbar .navbar-nav .logout-btn::after {
+    transform-origin: 0 0;
+  }
+
+  .navbar .navbar-nav .logout-btn:hover::after {
+    transform: scaleX(0.2);
+  }
 
   .hero {
-    padding-top: 100px; /* Jarak atas dari navbar */
-    display: flex; /* Menggunakan flexbox */
-    flex-direction: column; /* Mengatur tata letak menjadi kolom */
-    align-items: center; /* Mengatur perataan elemen ke tengah secara horizontal */
-    justify-content: center; /* Mengatur perataan elemen ke tengah secara vertikal */
-    text-align: center; /* Mengatur teks menjadi rata tengah */
-    min-height: calc(
-      100vh - 200px
-    ); /* Agar hero tidak terlalu dekat dengan navbar */
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: calc(100vh - 200px);
   }
 
   body {

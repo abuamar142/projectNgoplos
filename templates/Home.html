@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap" rel="stylesheet">
+
+    <!-- feather icon -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+
+
+    <link rel="stylesheet" href="/Project_KPL/css/homr.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+    <title>Ngoplos</title>
+</head>
+<body>
+    <!-- Navbar start -->
+    <nav class="navbar">
+        <img src="{{ url_for('static', filename='img/Logo.png') }}">
+        <span class="hamburger-btn material-symbols-rounded">menu</span>
+        <ul class="links">
+            <span class="close-btn material-symbols-rounded">close</span>
+        </ul>
+        <div class="navbar-nav">
+            <a href="/">Home</a>
+            <a href="/cafe_noLogin">Cafe</a>
+            <button class="login-btn" id="login-btn">login</button>
+        </div>
+
+        <a href="#" id="hamburger-menu"><img src="{{ url_for('static', filename='img/align-justify.svg') }}"></a>
+            
+    </nav>
+    <!-- Navbar end -->
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Cari tempat <br>
+            <h1>nongkrong terbaikmu</h1>
+            <h1>disini!</h1>
+            <a href="#">Cari Tempat</a>
+        </div>
+        
+        <div class="hero-img">
+            <img src="{{ url_for('static', filename='img/coffee-isometric 1.png') }}">
+        </div>
+    </section>
+
+
+    <footer>
+        <h3>FTTI | Universitas Jenderal Achmad Yani Yogyakarta</h3>
+    </footer>
+
+    <div class="form-popup">
+        <span class="close-btn material-symbols-rounded">close</span>
+        
+        <div class="form-box login">
+            <div class="form-content">
+                <img src="{{ url_for('static', filename='img/Logo.png') }}" alt="Logo" class="navbar-logo" >
+                <p>Halo, Silahkan login terlebih dahulu</p>
+                <form action="/login" method="POST">
+                    <div class="input-field">
+                        <label for="username" >Username</label>
+                        <input name="username" type="text" id="username"  placeholder="Masukan Username anda" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="password" >password</label>
+                        <input name="password" type="text" id="Password"  placeholder="Masukan Paswword anda" required>
+                    </div>
+
+                    <button class="button1" type="submit" >Masuk</button>
+                </form>
+
+                <div class="akun">
+                    <p>-----Belum punya akun?-----</p>
+                </div>
+
+                <div class="bottom-link">
+                    <button class="button2" id="signup-link">Daftar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-box signup">
+            <div class="form-content">
+                <img src="{{ url_for('static', filename='img/Logo.png') }}" alt="Logo" class="navbar-logo" >
+                <p>Halo, Silahkan daftar terlebih dahulu</p>
+                <div class="row justify-content-center">         
+                </div>
+                <form action="/register" method="POST">
+
+                    <div class="input-field">
+                        <label for="username" >Username</label>
+                        <input name="username"  type="text" id="username" placeholder="Masukan Username anda" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="password" >password</label>
+                        <input name="password" type="text" id="Password" placeholder="Masukan Paswword anda"  required>
+                    </div>
+
+                    <div class="input-field">
+                            <label for="role">Role</label>
+                            <select id="role" name="role">
+                                <option value="pemilik_cafe">Pemilik Cafe</option>
+                                <option value="pengguna">Pengguna</option>
+                            </select>
+                    </div>
+
+                    <button class="button1" type="submit" id="submit-signup">Sign Up</button>
+                </form>
+
+                <div class="akun">
+                    <p>-----Sudah punya akun?-----</p>
+                </div>
+
+                <div class="bottom-link">
+                    <button class="button2" id="login-link">login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section class="cafe" id="cafe">
+        <div class="input-box">
+          <form action="/search" method="POST" class="search-form">
+            <i class="uil uil-search"></i>
+            <input
+              type="search"
+              name="search_query"
+              id="search-box"
+              placeholder="Cari Lokasi ...."
+            />
+            <button class="button" type="submit">Cari</button>
+          </form>
+        </div>
+      </section>
+  
+
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+
+</body>
+</html>

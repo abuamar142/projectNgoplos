@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head html -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/tailwind.css') }}"
+    />
+    <title>Ngoplos Dashboard</title>
+  </head>
+
+  <!-- Body html -->
+  <body class="h-screen bg-gradient p-4 flex">
+    <!-- Side bar -->
+    <div
+      id="sidebar"
+      class="w-1/6 text-white flex flex-col items-center justify-between p-4"
+    >
+      <!-- Logo -->
+      <img
+        src="{{ url_for('static', filename='img/Logo.png') }}"
+        alt="ngoplos-logo"
+      />
+
+      <!-- Tombol sidebar -->
+      <nav class="flex flex-col gap-3 h-full items-center justify-center">
+        <a
+          href="{{ url_for('dashboard') }}"
+          id="dashboard-btn"
+          class="text-black text-sm hover:text-white py-1"
+          >Dashboard</a
+        >
+        <a
+          href="#"
+          id="cafe-owner-btn"
+          class="text-black text-sm hover:text-white border-2 border-black px-12 py-1 rounded-md"
+          >Cafe Owner</a
+        >
+        <a
+          href="{{ url_for('add_cafe') }}"
+          id="add-cafe-btn"
+          class="text-black text-sm hover:text-white py-1"
+          >Add Cafe</a
+        >
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <div id="content" class="flex-1 p-4">
+      <!-- Header -->
+      <header class="flex justify-between items-center">
+        <div class="text-xl font-semibold">Hai admin!</div>
+        <a
+          href="{{ url_for('logout') }}"
+          class="text-black text-sm rounded-md py-1 px-3 border-2 border-black"
+          >Logout</a
+        >
+      </header>
+
+      <!-- Cafe owner content -->
+      <main id="cafe-owner-content" class="justify-center">
+        <!-- Cafe count -->
+        <div
+          class="my-4 w-52 h-52 p-4 border-2 border-black rounded-md flex items-center justify-center"
+        >
+          <div class="text-center">
+            <p class="text-xl">Cafe Count</p>
+            <p class="text-6xl">{{ cafe_count }}</p>
+          </div>
+        </div>
+
+        <!-- Owner count -->
+        <div
+          class="my-4 w-52 h-52 p-4 border-2 border-black rounded-md flex items-center justify-center"
+        >
+          <div class="text-center">
+            <p class="text-xl">Owner Count</p>
+            <p class="text-6xl text-black">{{ owner_count }}</p>
+            <div class="mt-4">
+              <a
+                href="#"
+                id="see-more-btn"
+                class="text-black text-sm hover:text-white border-2 border-black px-12 py-1 rounded-md"
+                >See More</a
+              >
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Details cafe content -->
+      <main id="cafe-detail-content" class="justify-center hidden">
+        <!-- Back button -->
+        <div class="my-4">
+          <a
+            href="#"
+            id="back-btn"
+            class="text-black text-sm hover:text-white border-2 border-black px-12 py-1 rounded-md"
+            >Back</a
+          >
+        </div>
+
+        <!-- Cafe count -->
+        <div
+          class="my-4 w-52 h-52 p-4 border-2 border-black rounded-md flex items-center justify-center"
+        >
+          <div class="text-center">
+            <p class="text-xl">Cafe Count</p>
+            <p class="text-6xl">{{ cafe_count }}</p>
+          </div>
+        </div>
+
+        <!-- List owner -->
+
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const cafeOwnerContent = document.getElementById("cafe-owner-content");
+        const cafeDetailContent = document.getElementById(
+          "cafe-detail-content"
+        );
+
+        const seeMoreBtn = document.getElementById("see-more-btn");
+        const backBtn = document.getElementById("back-btn");
+
+        // Tambahkan event listener untuk tombol "See More"
+        seeMoreBtn.addEventListener("click", function () {
+          cafeOwnerContent.classList.add("hidden");
+          cafeDetailContent.classList.remove("hidden");
+        });
+
+        // Tambahkan event listener untuk tombol "Back"
+        backBtn.addEventListener("click", function () {
+          cafeOwnerContent.classList.remove("hidden");
+          cafeDetailContent.classList.add("hidden");
+        });
+      });
+    </script>
+  </body>
+</html>

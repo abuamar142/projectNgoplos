@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--=== Coding by CodingLab | www.codinglabweb.com === -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!----======== CSS ======== -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/add_cafe_owner.css') }}"
+    />
+
+    <!----===== Iconscout CSS ===== -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+
+    <title>Admin Dashboard Panel</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo-name">
+        <div class="logo-image">
+          <img src="{{ url_for('static', filename='img/logo.png') }}" />
+        </div>
+
+        <span class="logo_name">Owner</span>
+      </div>
+
+      <div class="menu-items">
+        <ul class="nav-links">
+          <li>
+            {% if 'user_id' in session %}
+            <a
+              href="{{ url_for('get_cafe_and_menu_by_user_id', user_id=session['user_id']) }}"
+            >
+              <i class="uil uil-estate"></i>
+              <span class="link-name">Dashboard</span>
+            </a>
+            {% endif %}
+          </li>
+          <li>
+            <a href="/add_cafe_owner">
+              <i class="uil uil-files-landscapes"></i>
+              <span class="link-name">Tambah Cafe</span>
+            </a>
+          </li>
+          <li>
+            <a href="/edit_cafe">
+              <i class="uil uil-chart"></i>
+              <span class="link-name">Edit Cafe</span>
+            </a>
+          </li>
+          <li>
+            <a href="/add_menu">
+              <i class="uil uil-thumbs-up"></i>
+              <span class="link-name">Tambah Menu</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="uil uil-comments"></i>
+              <span class="link-name">Edit Menu</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="logout-mode">
+          <li>
+            <a href="#">
+              <i class="uil uil-signout"></i>
+              <span class="link-name">Logout</span>
+            </a>
+          </li>
+
+          <li class="mode">
+            <a href="#">
+              <i class="uil uil-moon"></i>
+              <span class="link-name">Dark Mode</span>
+            </a>
+
+            <div class="mode-toggle">
+              <span class="switch"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="dashboard">
+      <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+
+        <img src="{{ url_for('static', filename='img/profile.jpg') }}" />
+      </div>
+
+      <div class="container">
+        <div class="title">Tambahkan Menu</div>
+        <div class="content">
+          <form action="{{ url_for('add_menu')}}" method="POST">
+            <div class="user-details">
+              <div class="input-box">
+                <span class="details">Cafe id</span>
+                <input
+                  name="cafe_id"
+                  type="text"
+                  placeholder="Masukan Cafe ID (lihat di Dashboard Cafe)"
+                  required
+                />
+              </div>
+
+              <div class="input-box">
+                <span class="details">Nama Menu</span>
+                <input
+                  name="menu_name"
+                  type="text"
+                  placeholder="Masukan nama menu"
+                  required
+                />
+              </div>
+
+              <div class="input-box">
+                <span class="details">Kategori</span>
+                <select name="category" required id="select">
+                  <option value="makanan">Makanan</option>
+                  <option value="minuman">Minuman</option>
+                </select>
+              </div>
+
+              <div class="input-box">
+                <span class="details">Harga</span>
+                <input
+                  name="price"
+                  type="text"
+                  placeholder="contoh : 20000"
+                  required
+                />
+              </div>
+            </div>
+            <div class="button">
+              <input type="submit" value="Tambahkan" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+  </body>
+</html>

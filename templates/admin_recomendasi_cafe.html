@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Ngoplos</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">ADMIN</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <!-- Link ke halaman Kelola Data Pengguna -->
+          <li class="nav-item">
+            <a class="nav-link" href="/all_cafes"
+              >Kelola Cafe</a
+            >
+          </li>
+          <!-- Link ke halaman Kelola Cafe -->
+          <li class="nav-item">
+            <a class="nav-link" href="/users">Kelola Pengguna</a>
+          </li>
+        </ul>
+        <!-- Link untuk logout -->
+        <form class="form-inline my-2 my-lg-0">
+          <a class="btn btn-outline-danger my-2 my-sm-0" href="/logout"
+            >Logout</a
+          >
+        </form>
+      </div>
+    </nav>
+
+    <div class="container-fluid px-3">
+          <h2>Cafe <button class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Tambah Cafe</button></h2>
+          {%with messages = get_flashed_messages()%} {%if messages%} {% for
+          message in messages %}
+          <div class="alert alert-success alert-dismissable" role="alert">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{message}}
+          </div>
+          {%endfor%} {%endif%} {%endwith%}
+
+          <!-- Enter New Student Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title text-primary" style="align-content: center;">Silahkan Tambahkan Cafe Baru</h5>    
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        
+
+                        <div class="modal-body">
+                            <form action="/tambah_cafe" method="POST">
+                                <div class="form-group">
+                                    <label>Nama Cafe</label>
+                                    <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Cafe">
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label>Link Gmaps</label>
+                                    <input type="text" name="Link_gmaps" class="form-control" placeholder="Masukkan Link Gmaps">
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label>Deskripsi</label>
+                                    <input name="deskripsi" type="text" class="form-control" placeholder="Masukkan Deskripsi Cafe">
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label>Jam Buka</label>
+                                    <input name="jam_buka" type="text" class="form-control" placeholder="Masukkan Jam Buka">
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label>Jam Tutup</label>
+                                    <input name="jam_tutup" type="text" class="form-control" placeholder="Masukkan Jam Tutup">
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <input name="status" type="text" class="form-control" placeholder="Masukkan Status Cafe">
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label>Nama Lokasi</label>
+                                    <input name="nama_lokasi" type="text" class="form-control" placeholder="Masukkan Nama Lokasi">
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label>Rekomendasi User</label>
+                                    <input name="rekomendasi_user" type="text" class="form-control" placeholder="Masukkan Rekomendasi User">
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label>User ID</label>
+                                    <input name="user_id" type="text" class="form-control" placeholder="Masukkan User ID">
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label>Fasilitas</label>
+                                    <input name="fasilitas" type="text" class="form-control" placeholder="Masukkan Fasilitas Cafe">
+                                </div>
+                        
+                                <button type="submit" class="btn btn-primary mb-2">Save</button>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+
+
+          
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">id Cafe</th>
+                <th scope="col">Nama Cafe</th>
+                <th scope="col">Link Gmaps</th>
+                <th scope="col">Deskripsi</th>
+                <th scope="col">jam Buka</th>
+                <th scope="col">Jam Tutup</th>
+                <th scope="col">Status</th>
+                <th scope="col">Nama Lokasi</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Rekomendasi</th>
+                <th scope="col">Fasilitas</th>
+                <!-- Kolom baru untuk menampilkan fasilitas -->
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in all_cafes %}
+              <tr>
+                <td>{{ row['cafe_id'] }}</td>
+                <td>{{ row['nama'] }}</td>
+                <td>{{ row['Link_gmaps'] }}</td>
+                <td>{{ row['deskripsi'] }}</td>
+                <td>{{ row['jam_buka'] }}</td>
+                <td>{{ row['jam_tutup'] }}</td>
+                <td>{{ row['status'] }}</td>
+                <td>{{ row['nama_lokasi'] }}</td>
+                <td>{{ row['user_id'] }}</td>
+                <td>{{ row['rekomendasi_user'] }}</td>
+                <td>{{ row['fasilitas'] }}</td>
+                <td>
+                  <a
+                    href="/update/{{ row['cafe_id'] }}"
+                    class="btn btn-warning btn-sm"
+                    data-toggle="modal"
+                    data-target="#modaledit{{ row['cafe_id'] }}"
+                    >Edit</a
+                  >
+                  <a
+                    href="/delete/{{ row['cafe_id'] }}"
+                    onclick="return confirm('Are Sure Want To Deleted ?')"
+                    class="btn btn-danger btn-sm"
+                    >Delete</a
+                  >
+                </td>
+              </tr>
+
+              <!-- Enter New Student Modal -->
+              <div
+                id="modaledit{{row['cafe_id']}}"
+                class="modal fade"
+                role="dialog"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5
+                        class="modal-title text-primary"
+                        style="align-content: center"
+                      >
+                        Edit atau setujui Rekomendasi User
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+                      <form action="{{ url_for('update')}}" method="POST">
+                        <input
+                          type="hidden"
+                          name="id"
+                          value="{{row['cafe_id']}}"
+                        />
+                        <div class="form-group">
+                          <label>Nama</label>
+                          <input
+                            value="{{ row['nama'] }}"
+                            type="text"
+                            name="nama"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="Enter Nama"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label>link Gmaps</label>
+                          <input
+                            value="{{ row['Link_gmaps'] }}"
+                            type="text"
+                            name="Link_gmaps"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="Enter Link Gmaps"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label>deskripsi</label>
+                          <input
+                            value="{{ row['deskripsi'] }}"
+                            name="deskripsi"
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="Enter Deskripsu"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label>Jam Buka</label>
+                          <input
+                            value="{{ row['jam_buka'] }}"
+                            name="jam_buka"
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="Enter Jam Buka"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label>Jam Tutup</label>
+                          <input
+                            name="jam_tutup"
+                            value="{{ row['jam_tutup'] }}"
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="Enter Jam Tutup"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label>Status</label>
+                          <input
+                            value="{{ row['status'] }}"
+                            name="status"
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="Enter Status"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label>Nama Lokasi</label>
+                          <input
+                            value="{{ row['nama_lokasi'] }}"
+                            name="nama_lokasi"
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="Enter Nama Lokas"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label>Rekomendais User</label>
+                          <input
+                            value="{{ row['rekomendasi_user'] }}"
+                            name="rekomendasi_user"
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="Enter User"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label>User Id</label>
+                          <input
+                            value="{{ row['user_id'] }}"
+                            name="user_id"
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="Enter User"
+                          />
+                        </div>
+                        
+                        <div class="form-group">
+                          <label>Fasilitas</label>
+                          <input
+                            value="{{ row['fasilitas'] }}"
+                            name="fasilitas"
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="Enter User"
+                          />
+                        </div>
+
+                        <button type="submit" class="btn btn-success mb-2">
+                          Update
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- Content ends here-->
+
+        <div class="col-sm-2"></div>
+      </div>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+  </body>
+</html>

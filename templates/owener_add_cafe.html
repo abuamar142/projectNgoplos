@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--=== Coding by CodingLab | www.codinglabweb.com === -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!----======== CSS ======== -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/add_cafe_owner.css') }}"
+    />
+
+    <!----===== Iconscout CSS ===== -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+
+    <title>Edit Cafe</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo-name">
+        <div class="logo-image">
+          <img src="{{ url_for('static', filename='img/logo.png') }}" />
+        </div>
+
+        <span class="logo_name">Owner</span>
+      </div>
+
+      <div class="menu-items">
+        <ul class="nav-links">
+          <li>
+            {% if 'user_id' in session %}
+            <a
+              href="{{ url_for('get_cafe_and_menu_by_user_id', user_id=session['user_id']) }}"
+            >
+              <i class="uil uil-estate"></i>
+              <span class="link-name">Dashboard</span>
+            </a>
+            {% endif %}
+          </li>
+          <li>
+            <a href="/add_cafe_owner">
+              <i class="uil uil-files-landscapes"></i>
+              <span class="link-name">Tambah Cafe</span>
+            </a>
+          </li>
+          <li>
+            <a href="/edit_cafe">
+              <i class="uil uil-chart"></i>
+              <span class="link-name">Edit Cafe</span>
+            </a>
+          </li>
+          <li>
+            <a href="/add_menu">
+              <i class="uil uil-thumbs-up"></i>
+              <span class="link-name">Tambah Menu</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="uil uil-comments"></i>
+              <span class="link-name">Edit Menu</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="logout-mode">
+          <li>
+            <a href="#">
+              <i class="uil uil-signout"></i>
+              <span class="link-name">Logout</span>
+            </a>
+          </li>
+
+          <li class="mode">
+            <a href="#">
+              <i class="uil uil-moon"></i>
+              <span class="link-name">Dark Mode</span>
+            </a>
+
+            <div class="mode-toggle">
+              <span class="switch"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="dashboard">
+      <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+
+        <img src="{{ url_for('static', filename='img/profile.jpg') }}" />
+      </div>
+
+      <div class="container">
+        <div class="title">Edit cafe</div>
+        <div class="content">
+          <form action="{{ url_for('update')}}" method="POST">
+            <!-- Updated action and method -->
+            <div class="user-details">
+              <div class="input-box">
+                <span class="details">Nama Cafe</span>
+                <input
+                  name="nama"
+                  type="text"
+                  placeholder="Masukan Nama Cafe"
+                  required
+                />
+              </div>
+              <!-- Tambahkan atribut name pada input berikut -->
+              <div class="input-box">
+                <span class="details">Nama Lokasi</span>
+                <input
+                  name="nama_lokasi"
+                  type="text"
+                  placeholder="Masukan nama lokasi"
+                  required
+                />
+              </div>
+              <!-- Tambahkan atribut name pada input berikut -->
+              <div class="input-box">
+                <span class="details">Link Gmaps</span>
+                <input
+                  name="Link_gmaps"
+                  type="text"
+                  placeholder="input URL Gmaps "
+                  required
+                />
+              </div>
+              <!-- Tambahkan atribut name pada input berikut -->
+              <div class="input-box">
+                <span class="details">Deskripsi</span>
+                <input
+                  name="deskripsi"
+                  type="text"
+                  placeholder="Masukan Deskripsi Cafe anda"
+                  required
+                />
+              </div>
+              <!-- Tambahkan atribut name pada input berikut -->
+              <div class="input-box">
+                <span class="details">Jam Buka</span>
+                <input
+                  name="jam_buka"
+                  type="text"
+                  placeholder="Contoh : 06.00"
+                  required
+                />
+              </div>
+              <!-- Tambahkan atribut name pada input berikut -->
+              <div class="input-box">
+                <span class="details">Jam Tutup</span>
+                <input
+                  name="jam_tutup"
+                  type="text"
+                  placeholder="contoh : 23.00"
+                  required
+                />
+              </div>
+              <!-- Tambahkan atribut name pada input berikut -->
+              <div class="input-box">
+                <span class="details">Status</span>
+                <input
+                  name="status"
+                  type="text"
+                  placeholder="Isikan 1 untuk di tampilkan"
+                  required
+                />
+              </div>
+              <!-- Tambahkan atribut name pada input berikut -->
+              <div class="input-box">
+                <span class="details">Fasilitas</span>
+                <input
+                  name="fasilitas"
+                  type="text"
+                  placeholder="Pisahkan dengan tanda titik untuk setaip fasilitas"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="button">
+              <input type="submit" value="Tambahkan" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+  </body>
+</html>

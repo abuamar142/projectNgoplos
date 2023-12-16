@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--=== Coding by CodingLab | www.codinglabweb.com === -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!----======== CSS ======== -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/add_cafe_owner.css') }}"
+    />
+
+    <!----===== Iconscout CSS ===== -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+
+    <title>Admin Dashboard Panel</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo-name">
+        <div class="logo-image">
+          <img src="{{ url_for('static', filename='img/logo.png') }}" />
+        </div>
+
+        <span class="logo_name">Owner</span>
+      </div>
+
+      <div class="menu-items">
+        <ul class="nav-links">
+          <li>
+            {% if 'user_id' in session %}
+            <a
+              href="{{ url_for('get_cafe_and_menu_by_user_id', user_id=session['user_id']) }}"
+            >
+              <i class="uil uil-estate"></i>
+              <span class="link-name">Dashboard</span>
+            </a>
+            {% endif %}
+          </li>
+          <li>
+            <a href="/add_cafe_owner">
+              <i class="uil uil-files-landscapes"></i>
+              <span class="link-name">Tambah Cafe</span>
+            </a>
+          </li>
+          <li>
+            <a href="/edit_cafe">
+              <i class="uil uil-chart"></i>
+              <span class="link-name">Edit Cafe</span>
+            </a>
+          </li>
+          <li>
+            <a href="/add_menu">
+              <i class="uil uil-thumbs-up"></i>
+              <span class="link-name">Tambah Menu</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="uil uil-comments"></i>
+              <span class="link-name">Edit Menu</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="logout-mode">
+          <li>
+            <a href="#">
+              <i class="uil uil-signout"></i>
+              <span class="link-name">Logout</span>
+            </a>
+          </li>
+
+          <li class="mode">
+            <a href="#">
+              <i class="uil uil-moon"></i>
+              <span class="link-name">Dark Mode</span>
+            </a>
+
+            <div class="mode-toggle">
+              <span class="switch"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="dashboard">
+      <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+
+        <img src="{{ url_for('static', filename='img/profile.jpg') }}" />
+      </div>
+
+      <div class="container">
+        <div class="title">Edit Cafe</div>
+        <div class="content">
+          <form action="/update" method="POST">
+            {% for cafe in all_cafes %}
+            <input name="cafe_id" type="hidden" value="{{ cafe['cafe_id'] }}" />
+            <div class="user-details">
+              <div class="input-box">
+                <span class="details">Nama Cafe</span>
+                <input
+                  value="{{ cafe['nama_cafe'] }}"
+                  name="nama"
+                  type="text"
+                  placeholder="Enter"
+                  required
+                />
+              </div>
+              <div class="input-box">
+                <span class="details">Nama Lokasi</span>
+                <input
+                  value="{{ cafe['nama_lokasi'] }}"
+                  name="nama_lokasi"
+                  type="text"
+                  placeholder="Enter"
+                  required
+                />
+              </div>
+              <div class="input-box">
+                <span class="details">Link Gmaps</span>
+                <input
+                  value="{{ cafe['Link_gmaps'] }}"
+                  name="Link_gmaps"
+                  type="text"
+                  placeholder="Enter"
+                  required
+                />
+              </div>
+              <div class="input-box">
+                <span class="details">Deskripsi</span>
+                <input
+                  value="{{ cafe['deskripsi'] }}"
+                  name="deskripsi"
+                  type="text"
+                  placeholder="Enter"
+                  required
+                />
+              </div>
+              <div class="input-box">
+                <span class="details">Jam Buka</span>
+                <input
+                  value="{{ cafe['jam_buka'] }}"
+                  name="jam_buka"
+                  type="text"
+                  placeholder="Enter"
+                  required
+                />
+              </div>
+              <div class="input-box">
+                <span class="details">Jam Tutup</span>
+                <input
+                  value="{{ cafe['jam_tutup'] }}"
+                  name="jam_tutup"
+                  type="text"
+                  placeholder="Enter"
+                  required
+                />
+              </div>
+              <div class="input-box">
+                <span class="details">Status</span>
+                <input
+                  value="{{ cafe['status'] }}"
+                  name="status"
+                  type="text"
+                  placeholder="Enter"
+                  required
+                />
+              </div>
+              <div class="input-box">
+                <span class="details">Fasilitas</span>
+                <input
+                  value="{{ cafe['fasilitas'] }}"
+                  name="fasilitas"
+                  type="text"
+                  placeholder="Enter"
+                  required
+                />
+              </div>
+              <input
+                type="hidden"
+                name="rekomendasi_user"
+                value="{{ rekomendasi_user }}"
+              />
+            </div>
+            {% endfor %}
+            <div class="button">
+              <input type="submit" value="Edit" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+  </body>
+</html>

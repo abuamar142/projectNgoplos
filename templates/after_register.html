@@ -13,16 +13,14 @@
       <div class="content">
         <img src="{{ url_for('static', filename='img/hello.svg') }}" />
         <h4 data-text="welcome">Selamat datang di Ngoplos!</h4>
-        <p>
-          Halo, <span id="pengguna_session">{{ session['username'] }}</span>
-        </p>
+        <p>Halo, <span id="pengguna_session"></span></p>
         <p>
           Terima kasih telah bergabung dengan Ngoplos! Mari mulai petualanganmu
           dalam dunia tempat nongkrong terbaik. Jelajahi, temukan, dan nikmati
           pengalaman bersama kami.
         </p>
         <div class="btns">
-          <a href="/home_login">lanjutkan Ke aplikasi</a>
+          <a href="/">Kembali Untuk Login</a>
         </div>
       </div>
     </div>
